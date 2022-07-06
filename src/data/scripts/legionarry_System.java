@@ -37,20 +37,15 @@ public class legionarry_System {
     public void generate(SectorAPI sector){
 
         StarSystemAPI system = sector.createStarSystem("Dienta");
-        //note: temporarily setting this to the middle of the sector in case it's an issue
-        system.getLocation().set(-23000,-20000);
-        //system.setBackgroundTextureFilename("graphics/backgrounds/leg_background.jpg");
-        //note: temp change, I don't have the file
-        system.setBackgroundTextureFilename("graphics/backgrounds/background2.jpg");
+        system.getLocation().set(-22000,-28000);
+        system.setBackgroundTextureFilename("graphics/backgrounds/leg_background.jpg");
 
         float jumpFringeDist=4000f;
-        float asteroids1Dist=20000f;
-        float asteroidBelt1Dist=13000f;
-
-        //note: ...there is no white dwarf entry in planets.json vanilla
+        float asteroids1Dist=200f;
+        float asteroidBelt1Dist=200f;
 
         PlanetAPI dienta_Star = system.initStar("leg_dienta", // unique id for this star
-        "star_white", // id in planets.json
+        StarTypes.WHITE_DWARF, // id in planets.json
         500f, // radius (in pixels at default zoom)
         150); // corona radius, from star edge
         dienta_Star.setName("Dienta");
@@ -81,10 +76,7 @@ public class legionarry_System {
         3000f,
         150f);
 
-    //note: sorry that I commented it out, it shouldn't be buggy if you actually have the csv
-    //dienta_1.setCustomDescriptionId("leg_planet_azura"); //reference descriptions.csv
-
-        //note: I also made this an independent market temporarily for my own convenience
+        //dienta_1.setCustomDescriptionId("leg_planet_azura"); //reference descriptions.csv
 
     MarketAPI dienta_market = MarketPlaceAdder.addMarketplace("independent", dienta_1, null,
         "Azura",
@@ -102,13 +94,14 @@ public class legionarry_System {
                 Conditions.AI_CORE_ADMIN)
         ),
             new ArrayList<String>(
-                 Arrays.asList(
+        Arrays.asList(
                 Submarkets.GENERIC_MILITARY,
                 Submarkets.SUBMARKET_OPEN,
                 Submarkets.SUBMARKET_STORAGE,
-                Submarkets.SUBMARKET_BLACK)
-                    ),
-            new ArrayList<String>(Arrays.asList(
+                Submarkets.SUBMARKET_BLACK
+        )),
+            new ArrayList<String>(
+        Arrays.asList(
                 Industries.POPULATION,
                 Industries.MEGAPORT,
                 Industries.MINING,
@@ -116,11 +109,10 @@ public class legionarry_System {
                 Industries.HEAVYBATTERIES,
                 Industries.HIGHCOMMAND,
                 Industries.WAYSTATION,
-                //note: I don't think I have aquaculture? that was from indoevo right. probably you want to check if the player has that before trying to add it
                 //Industries.AQUACULTURE,
-                Industries.ORBITALWORKS)
-                ),
-            true,false);
+                Industries.ORBITALWORKS
+        )
+    ), true,false);
 
         dienta_market.addIndustry(Industries.ORBITALWORKS, Collections.singletonList(Items.PRISTINE_NANOFORGE));
 
@@ -140,7 +132,6 @@ public class legionarry_System {
         "fringe_jump",
         "Fringe System Jump");
 
-        //note: ...why wasn't the focus set at the star?
         jumpPoint3.setCircularOrbit(dienta_Star, 2, jumpFringeDist, 4000f);
         jumpPoint3.setStandardWormholeToHyperspaceVisual();
 
