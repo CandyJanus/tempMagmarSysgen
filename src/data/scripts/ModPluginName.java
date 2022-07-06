@@ -21,6 +21,7 @@ public class ModPluginName extends BaseModPlugin {
         boolean haveNexerelin = Global.getSettings().getModManager().isModEnabled("nexerelin");
         if (!haveNexerelin || SectorManager.getManager().isCorvusMode()) {
             new legionarry_System().generate(Global.getSector());
+            log.info("Generating Dienta in a new game.");
             data.put("legionarry_System_generated", "-");
         }
     }
@@ -35,7 +36,7 @@ public class ModPluginName extends BaseModPlugin {
         if (!haveNexerelin || SectorManager.getManager().isCorvusMode()) {
             if (!data.containsKey("legionarry_System_generated")) {
                 new legionarry_System().generate(Global.getSector());
-                log.info("Generating Dienta.");
+                log.info("Generating Dienta in a currently existing game.");
                 data.put("legionarry_System_generated", "-");
             }
         }
