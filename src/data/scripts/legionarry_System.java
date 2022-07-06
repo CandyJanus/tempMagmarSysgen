@@ -38,7 +38,8 @@ public class legionarry_System {
 
         StarSystemAPI system = sector.createStarSystem("Dienta");
         system.getLocation().set(-22000,-28000);
-        system.setBackgroundTextureFilename("graphics/backgrounds/leg_background.jpg");
+        //system.setBackgroundTextureFilename("graphics/backgrounds/leg_background.jpg");
+        system.setBackgroundTextureFilename("graphics/backgrounds/background2.jpg");
 
         float jumpFringeDist=4000f;
         float asteroids1Dist=200f;
